@@ -1,6 +1,13 @@
 import "./globals.css";
 import { Providers } from "@/providers/Providers";
 import Navbar from "@/components/navigation/Navbar";
+import { DM_Sans } from 'next/font/google';
+
+const dmSans = DM_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-dm-sans',
+});
 
 export const metadata = {
   title: 'Suiko',
@@ -16,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={dmSans.variable}>
       <body>
         <Providers>
           <Navbar />

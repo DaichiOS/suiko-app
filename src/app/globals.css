@@ -5,6 +5,17 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --dapp-kit-primary: #fff7ad;
+  --dapp-kit-primary-hover: #ffa9f9;
+  --dapp-kit-accent: #ffa9f9;
+  --dapp-kit-accent-hover: #fff7ad;
+  --dapp-kit-background: transparent;
+  --dapp-kit-foreground: #000000;
+  --dapp-kit-connected-background: rgba(255, 169, 249, 0.2);
+  --dapp-kit-connected-foreground: #fff7ad;
+  --dapp-kit-border: transparent;
+  --dapp-kit-menu-background: rgba(0, 0, 0, 0.95);
+  --dapp-kit-menu-hover: rgba(255, 255, 255, 0.1);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,5 +28,5 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-dm-sans), 'DM Sans', sans-serif;
 }

@@ -4,6 +4,7 @@ import { ConnectButton } from "@mysten/dapp-kit";
 import { useNavigation } from "@/providers/navigation/NavigationContext";
 import Image from "next/image";
 
+
 const Navbar = () => {
   const { currentPage, navigate } = useNavigation();
 
@@ -19,8 +20,8 @@ const Navbar = () => {
           </div>
         </div>
         
-        <div className="flex items-center justify-end flex-1 gap-6">
-          <ul className="flex space-x-1">
+        <div className="flex items-center justify-end flex-1">
+          <ul className="flex space-x-1 mr-1">
             <li>
               <button
                 onClick={() => navigate("/")}
@@ -46,10 +47,12 @@ const Navbar = () => {
               </button>
             </li>
           </ul>
-          <ConnectButton className="!bg-gradient-to-r !from-[#fff7ad] !to-[#ffa9f9] !text-black hover:!opacity-90 !transition-opacity !duration-200 !rounded-lg !text-sm !font-medium !px-4 !py-2" />
+          <ConnectButton />
         </div>
       </div>
+
     </nav>
+
   );
 };
 
