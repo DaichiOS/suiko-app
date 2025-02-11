@@ -4,6 +4,7 @@ import { useCurrentAccount } from '@mysten/dapp-kit';
 import { ProfileHeader } from '@/components/profile/ProfileHeader';
 import { ProfileTabs } from '@/components/profile/ProfileTabs';
 import { ProfileSignIn } from '@/components/profile/ProfileSignIn';
+import { useUserTypeStore } from '@/store/userTypeStore';
 
 const founderStats = {
   builderScore: 0,
@@ -11,9 +12,16 @@ const founderStats = {
   reputation: 'New'
 };
 
+const builderStats = {
+  builderScore: 0,
+  socialRank: 'Builder',
+  reputation: 'New'
+};
+
 export function ProfileView() {
   const currentAccount = useCurrentAccount();
-  const isFounder = true;
+  const userType = useUserTypeStore((state) => state.userType);
+  const isFounder = userType === 'founder';
 
   if (!currentAccount) {
     return <ProfileSignIn />;
@@ -22,7 +30,7 @@ export function ProfileView() {
   return (
     <div className="w-full">
       <ProfileHeader 
-        stats={founderStats} 
+        stats={isFounder ? founderStats : builderStats} 
         isFounder={isFounder}
         address={currentAccount.address}
       />

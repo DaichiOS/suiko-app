@@ -1,10 +1,11 @@
 'use client';
 
-import { IconUser, IconBell, IconSettings } from '@tabler/icons-react';
+import { IconUser, IconBell, IconSettings, IconBriefcase, IconPlus } from '@tabler/icons-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useUserTypeStore } from '@/store/userTypeStore';
 
-const navigationItems = [
+const commonNavigationItems = [
   {
     name: 'Profile',
     href: '/profile',
@@ -22,8 +23,28 @@ const navigationItems = [
   },
 ];
 
+const founderNavigationItems = [
+  {
+    name: 'Projects',
+    href: '/profile/projects',
+    icon: IconBriefcase,
+  },
+  {
+    name: 'Create Project',
+    href: '/profile/projects/create',
+    icon: IconPlus,
+  },
+];
+
 export function Sidebar() {
   const pathname = usePathname();
+  const userType = useUserTypeStore((state) => state.userType);
+  const isFounder = userType === 'founder';
+
+  const navigationItems = [
+    ...commonNavigationItems,
+    ...(isFounder ? founderNavigationItems : []),
+  ];
 
   return (
     <nav className="pt-7">

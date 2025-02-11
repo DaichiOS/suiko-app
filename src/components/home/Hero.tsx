@@ -7,11 +7,32 @@ import { thunderFlash, textFlash } from '@/animations/heroAnimations';
 import { GlowContainer } from '@/components/ui/containers/GlowContainer';
 import { InfoCard } from '@/components/ui/cards/InfoCard';
 import { GlowButton } from '@/components/ui/buttons/GlowButton';
+import { useUserTypeStore } from '@/store/userTypeStore';
+import { useEffect } from 'react';
 
 export function Hero() {
   const router = useRouter();
   const currentAccount = useCurrentAccount();
-  
+  const setUserType = useUserTypeStore((state) => state.setUserType);
+  const userType = useUserTypeStore((state) => state.userType);
+
+  useEffect(() => {
+    if (currentAccount && userType) {
+      router.push('/profile');
+    }
+  }, [currentAccount, userType, router]);
+
+  // TODO: Handle the user type based on wallet address
+  const handleFounderClick = () => {
+    setUserType('founder');
+    router.push(currentAccount ? '/profile' : '/founders-login');
+  };
+
+  const handleBuilderClick = () => {
+    setUserType('builder');
+    router.push(currentAccount ? '/profile' : '/builders-login');
+  };
+
   return (
     <motion.div 
       variants={thunderFlash}
@@ -36,12 +57,12 @@ export function Hero() {
           <InfoCard 
             title="For Founders"
             description="Post opportunities and find verified web3 builders with proven onchain experience"
-            route={currentAccount ? '/profile' : '/founders'}
+            onClick={handleFounderClick}
           />
           <InfoCard 
             title="For Builders"
             description="Showcase your contributions and connect with innovative web3 projects"
-            route="/builders"
+            onClick={handleBuilderClick}
           />
         </div>
 

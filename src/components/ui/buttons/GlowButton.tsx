@@ -4,13 +4,20 @@ import { motion } from 'framer-motion';
 import { buttonFlash } from '@/animations/heroAnimations';
 
 interface GlowButtonProps {
-  onClick: () => void;
+  onClick?: () => void;
   variant?: 'primary' | 'secondary';
   children: React.ReactNode;
   className?: string;
+  type?: 'button' | 'submit' | 'reset';
 }
 
-export function GlowButton({ onClick, variant = 'primary', children, className = '' }: GlowButtonProps) {
+export function GlowButton({ 
+  onClick, 
+  variant = 'primary', 
+  children, 
+  className = '',
+  type = 'button'
+}: GlowButtonProps) {
   const baseStyles = "w-full py-3 px-6 rounded-lg font-medium transition-all duration-300";
   const variants = {
     primary: `${baseStyles} bg-[#42dcff]/10 text-[#42dcff] border border-[#42dcff]/20 
@@ -22,6 +29,7 @@ export function GlowButton({ onClick, variant = 'primary', children, className =
 
   return (
     <motion.button
+      type={type}
       variants={buttonFlash}
       whileHover="hover"
       whileTap="tap"
