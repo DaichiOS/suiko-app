@@ -17,7 +17,7 @@ export function InfoCard({ title, description, route }: InfoCardProps) {
     <motion.div
       variants={cardFlash}
       whileHover={{ scale: 1.02 }}
-      onClick={() => router.push(route)}
+      onClick={() => router.push(route || '')}
       className="relative p-6 rounded-xl cursor-pointer
         bg-white/5 border border-[#42dcff]/20 backdrop-blur-sm
         hover:border-[#42dcff]/30 transition-colors duration-300"
