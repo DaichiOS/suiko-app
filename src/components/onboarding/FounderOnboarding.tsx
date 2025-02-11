@@ -5,17 +5,27 @@ import { GlowButton } from '@/components/ui/buttons/GlowButton';
 import { ConnectButton } from "@mysten/dapp-kit";
 import { useCurrentAccount } from '@mysten/dapp-kit';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export function FounderOnboarding() {
   const currentAccount = useCurrentAccount();
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (currentAccount) {
+      setIsLoading(true);
       router.push('/profile');
     }
   }, [currentAccount, router]);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-[#42dcff] border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <motion.div
