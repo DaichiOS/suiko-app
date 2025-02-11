@@ -26,10 +26,14 @@ export default function RootLayout({
     <html lang="en" className={dmSans.variable}>
       <body>
         <Providers>
-          <Navbar />
-          <main className="container mx-auto px-4 pt-24 pb-8">
-            {children}
-          </main>
+          <div className="min-h-screen">
+            <div className="fixed w-full top-0 z-50 bg-[#0a0f1a]">
+              <Navbar />
+            </div>
+            <main className="max-w-4xl mx-auto pt-14 pb-8 relative z-10">
+              {children}
+            </main>
+          </div>
         </Providers>
       </body>
     </html>
